@@ -1,0 +1,16 @@
+{
+  "name": "react-time-picker",
+  "version": "0.0.1-SNAPSHOT",
+  "description": "React time picker component",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "time",
+    "picker"
+  ],
+  "author": "Patrick Grimard <pgrimard@gmail.com>",
+  "license": "MIT"
+}
