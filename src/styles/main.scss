@@ -1,0 +1,35 @@
+@import "~font-awesome/css/font-awesome.css";
+
+input {
+  text-align: center;
+}
+
+div[class^="timepicker-controls-"] {
+  display: inline-block;
+
+  button {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 2px;
+    background: #fff;
+    outline: none;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #eee;
+  }
+
+  input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input {
+    text-align: center;
+    font-size: 12pt;
+    width: 3em;
+  }
+}
