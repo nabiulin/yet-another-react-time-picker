@@ -44,7 +44,7 @@ export default class TimePicker extends React.Component {
   };
 
   componentDidMount() {
-    let timePicker = ReactDOM.findDOMNode(this.refs.timepicker);
+    let timePicker = document.querySelector('.timepicker-input');
     timePicker.addEventListener('click', () => handleClick(this));
   }
 
@@ -64,7 +64,7 @@ export default class TimePicker extends React.Component {
   }
 
   componentWillUnmount() {
-    let timePicker = ReactDOM.findDOMNode(this.refs.timepicker);
+    let timePicker = document.querySelector('.timepicker-input');
     timePicker.removeEventListener('click', () => handleClick(this));
   }
 
