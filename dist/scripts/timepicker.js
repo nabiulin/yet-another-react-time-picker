@@ -10,10 +10,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = require('react-dom');
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -77,7 +73,7 @@ var TimePicker = function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      var timePicker = _reactDom2.default.findDOMNode(this.refs.timepicker);
+      var timePicker = document.querySelector('.timepicker-input');
       timePicker.addEventListener('click', function () {
         return handleClick(_this2);
       });
@@ -100,7 +96,7 @@ var TimePicker = function (_React$Component) {
     value: function componentWillUnmount() {
       var _this3 = this;
 
-      var timePicker = _reactDom2.default.findDOMNode(this.refs.timepicker);
+      var timePicker = document.querySelector('.timepicker-input');
       timePicker.removeEventListener('click', function () {
         return handleClick(_this3);
       });
