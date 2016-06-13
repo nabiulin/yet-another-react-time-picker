@@ -95,7 +95,7 @@ export default class TimePicker extends React.Component {
   render() {
     return (
       <div className="timepicker">
-        <input type="text" ref="timepicker" name={this.props.name} id={this.props.name} value={`${this.state.hour}:${this.state.minute}:${this.state.second}`} readOnly={true}/>
+        <input type="text" className="timepicker-input" ref="timepicker" name={this.props.name} id={this.props.name} value={`${this.state.hour}:${this.state.minute}:${this.state.second}`} readOnly={true}/>
         {this.state.clicked ?
           <div className="timepicker-controls">
             <div className="timepicker-controls-hour">
