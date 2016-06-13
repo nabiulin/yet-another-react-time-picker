@@ -17,10 +17,19 @@
   ],
   "author": "Patrick Grimard <pgrimard@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pgrimard/yet-another-react-time-picker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pgrimard/yet-another-react-time-picker/issues"
+  },
+  "homepage": "https://github.com/pgrimard/yet-another-react-time-picker#readme",
   "dependencies": {
-    "font-awesome": "^4.6.3",
-    "react": "^15.0.1",
-    "react-dom": "^15.0.1"
+    "react": ">=0.13.3"
+  },
+  "peerDependencies": {
+    "font-awesome": "^4.6.3"
   },
   "devDependencies": {
     "babel-cli": "^6.7.7",

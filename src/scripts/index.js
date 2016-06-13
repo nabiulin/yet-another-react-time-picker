@@ -1,5 +1,4 @@
 import React, {PropTypes} from 'react';
-import ReactDOM from 'react-dom';
 
 const handleClick = (component) => {
   component.setState({clicked: !component.state.clicked});
