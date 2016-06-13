@@ -1,5 +1,14 @@
 @import "~font-awesome/css/font-awesome.css";
 
+.timepicker {
+  display: inline-block;
+}
+
+.timepicker-controls {
+  border: 1px solid #ddd;
+  border-radius: 2px;
+}
+
 div[class^="timepicker-controls-"] {
   display: inline-block;
 

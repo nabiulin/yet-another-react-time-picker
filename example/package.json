@@ -15,14 +15,13 @@
   "author": "Patrick Grimard <pgrimard@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "file-loader": "^0.8.5",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
-    "react-time-picker": "file:///Users/Patrick/IdeaProjects/react-time-picker",
-    "skeleton-css": "^2.0.4",
-    "url-loader": "^0.5.7"
+    "react-time-picker": "file:///Users/Patrick/IdeaProjects/react-time-picker"
   },
   "devDependencies": {
+    "url-loader": "^0.5.7",
+    "file-loader": "^0.8.5",
     "babel-core": "^6.4.0",
     "babel-eslint": "^4.1.6",
     "babel-loader": "^6.2.1",
@@ -33,13 +32,11 @@
     "eslint": "^1.10.3",
     "eslint-plugin-react": "^3.16.1",
     "extract-text-webpack-plugin": "^1.0.1",
-    "file-loader": "^0.8.5",
     "html-webpack-plugin": "^2.6.2",
     "node-sass": "^3.4.2",
     "rimraf": "^2.5.1",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
-    "url-loader": "^0.5.7",
     "webpack": "^1.12.11",
     "webpack-livereload-plugin": "^0.8.1"
   }

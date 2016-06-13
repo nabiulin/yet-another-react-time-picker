@@ -112,11 +112,11 @@ var TimePicker = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'timepicker' },
         _react2.default.createElement('input', { type: 'text', ref: 'timepicker', name: this.props.name, id: this.props.name, value: this.state.hour + ':' + this.state.minute + ':' + this.state.second, readOnly: true }),
         this.state.clicked ? _react2.default.createElement(
           'div',
-          null,
+          { className: 'timepicker-controls' },
           _react2.default.createElement(
             'div',
             { className: 'timepicker-controls-hour' },
