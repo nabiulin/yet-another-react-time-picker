@@ -1,7 +1,7 @@
 {
-  "name": "react-time-picker",
-  "version": "0.0.1-SNAPSHOT",
-  "description": "React time picker component",
+  "name": "yet-another-react-time-picker",
+  "version": "0.0.1",
+  "description": "Yet another React time picker component",
   "main": "dist/scripts/timepicker.js",
   "scripts": {
     "clean": "rimraf dist && mkdir dist && mkdir dist/styles && mkdir dist/scripts",
