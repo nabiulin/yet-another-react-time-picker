@@ -24,6 +24,7 @@ export default class TimePicker extends React.Component {
   }
 
   static propTypes = {
+    className: PropTypes.string,
     name: PropTypes.string.isRequired,
     hour: PropTypes.number,
     showHour: PropTypes.bool,
@@ -34,6 +35,7 @@ export default class TimePicker extends React.Component {
   };
 
   static defaultProps = {
+    className: '',
     hour: 0,
     showHour: true,
     minute: 0,
@@ -94,7 +96,7 @@ export default class TimePicker extends React.Component {
   render() {
     return (
       <div className="timepicker">
-        <input type="text" className="timepicker-input" ref="timepicker" name={this.props.name} id={this.props.name} value={`${this.state.hour}:${this.state.minute}:${this.state.second}`} readOnly={true}/>
+        <input type="text" className={'timepicker-input ' + this.props.className} ref="timepicker" name={this.props.name} id={this.props.name} value={`${this.state.hour}:${this.state.minute}:${this.state.second}`} readOnly={true}/>
         {this.state.clicked ?
           <div className="timepicker-controls">
             <div className="timepicker-controls-hour">
