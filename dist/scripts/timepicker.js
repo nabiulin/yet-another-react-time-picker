@@ -18,8 +18,21 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var handleClick = function handleClick(component) {
-  component.setState({ clicked: !component.state.clicked });
+function isDescendant(parent, child) {
+  var node = child.parentNode;
+  while (node != null) {
+    if (node == parent) {
+      return true;
+    }
+    node = node.parentNode;
+  }
+  return false;
+}
+
+var toggle = function toggle(e, timePicker, done) {
+  if (!isDescendant(timePicker, e.target)) {
+    done();
+  }
 };
 
 var padLeft = function padLeft(number) {
@@ -74,8 +87,15 @@ var TimePicker = function (_React$Component) {
       var _this2 = this;
 
       var timePicker = document.querySelector('.timepicker-input');
-      timePicker.addEventListener('click', function () {
-        return handleClick(_this2);
+      timePicker.addEventListener('click', function (e) {
+        return toggle(e, timePicker, function () {
+          return _this2.setState({ clicked: !component.state.clicked });
+        });
+      });
+      document.addEventListener('mousedown', function (e) {
+        return toggle(e, timePicker, function () {
+          return _this2.setState({ clicked: !component.state.clicked });
+        });
       });
     }
   }, {
@@ -97,8 +117,11 @@ var TimePicker = function (_React$Component) {
       var _this3 = this;
 
       var timePicker = document.querySelector('.timepicker-input');
-      timePicker.removeEventListener('click', function () {
-        return handleClick(_this3);
+      timePicker.removeEventListener('click', function (e) {
+        return toggle(e, _this3);
+      });
+      document.removeEventListener('click', function (e) {
+        return toggle(e, _this3);
       });
     }
   }, {

@@ -9,6 +9,8 @@
     "lint": "eslint ./src",
     "prebuild": "npm run clean && npm run lint",
     "build": "webpack -p",
+    "predev": "npm run clean && npm run lint",
+    "dev": "webpack -d",
     "prewatch": "npm run clean",
     "watch": "webpack -d --watch"
   },

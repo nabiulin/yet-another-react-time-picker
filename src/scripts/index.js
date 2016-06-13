@@ -1,7 +1,20 @@
 import React, {PropTypes} from 'react';
 
-const handleClick = (component) => {
-  component.setState({clicked: !component.state.clicked});
+function isDescendant(parent, child) {
+  var node = child.parentNode;
+  while (node != null) {
+    if (node == parent) {
+      return true;
+    }
+    node = node.parentNode;
+  }
+  return false;
+}
+
+const toggle = (e, timePicker, done) => {
+  if(!isDescendant(timePicker, e.target)) {
+    done();
+  }
 };
 
 const padLeft = (number) => {
@@ -46,7 +59,8 @@ export default class TimePicker extends React.Component {
 
   componentDidMount() {
     let timePicker = document.querySelector('.timepicker-input');
-    timePicker.addEventListener('click', () => handleClick(this));
+    timePicker.addEventListener('click', (e) => toggle(e, timePicker, () => this.setState({clicked: !component.state.clicked})));
+    document.addEventListener('mousedown', (e) => toggle(e, timePicker, () => this.setState({clicked: !component.state.clicked})));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -66,7 +80,8 @@ export default class TimePicker extends React.Component {
 
   componentWillUnmount() {
     let timePicker = document.querySelector('.timepicker-input');
-    timePicker.removeEventListener('click', () => handleClick(this));
+    timePicker.removeEventListener('click', (e) => toggle(e, this));
+    document.removeEventListener('click', (e) => toggle(e, this));
   }
 
   handleHourChange = (e) => {

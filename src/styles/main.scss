@@ -2,11 +2,12 @@
 
 .timepicker {
   display: inline-block;
+  position: relative;
 }
 
 .timepicker-controls {
   border: 1px solid #ddd;
-  border-radius: 2px;
+  position: absolute;
 }
 
 div[class^="timepicker-controls-"] {
