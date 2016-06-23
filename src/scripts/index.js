@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 
-function isDescendant(parent, child) {
-  var node = child.parentNode;
+const isDescendant = (parent, child) => {
+  let node = child.parentNode;
   while (node != null) {
     if (node == parent) {
       return true;
@@ -9,10 +9,12 @@ function isDescendant(parent, child) {
     node = node.parentNode;
   }
   return false;
-}
+};
 
-const toggle = (e, timePicker, done) => {
-  if(!isDescendant(timePicker, e.target)) {
+const handleClick = (e, component) => component.setState({clicked: !component.state.clicked});
+
+const handleMouseDown = (e, component, node, done) => {
+  if(!isDescendant(node, e.target)) {
     done();
   }
 };
@@ -58,9 +60,9 @@ export default class TimePicker extends React.Component {
   };
 
   componentDidMount() {
-    let timePicker = document.querySelector('.timepicker-input');
-    timePicker.addEventListener('click', (e) => toggle(e, timePicker, () => this.setState({clicked: !this.state.clicked})));
-    document.addEventListener('mousedown', (e) => toggle(e, timePicker, () => this.setState({clicked: !this.state.clicked})));
+    let timePicker = React.findDOMNode(this.refs.timepicker);
+    timePicker.addEventListener('click', (e) => handleClick(e, this));
+    document.addEventListener('mousedown', (e) => handleMouseDown(e, this, timePicker.parentNode, () => this.setState({clicked: false})));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -79,9 +81,9 @@ export default class TimePicker extends React.Component {
   }
 
   componentWillUnmount() {
-    let timePicker = document.querySelector('.timepicker-input');
-    timePicker.removeEventListener('click', (e) => toggle(e, timePicker, () => this.setState({clicked: !this.state.clicked})));
-    document.removeEventListener('click', (e) => toggle(e, timePicker, () => this.setState({clicked: !this.state.clicked})));
+    let timePicker = React.findDOMNode(this.refs.timepicker);
+    timePicker.removeEventListener('click', (e) => handleClick(e, this));
+    document.removeEventListener('mousedown', (e) => handleMouseDown(e, this, timePicker.parentNode, () => this.setState({clicked: false})));
   }
 
   handleHourChange = (e) => {
@@ -111,7 +113,7 @@ export default class TimePicker extends React.Component {
   render() {
     return (
       <div className="timepicker">
-        <input type="text" className={'timepicker-input ' + this.props.className} ref="timepicker" name={this.props.name} id={this.props.name} value={`${this.state.hour}:${this.state.minute}:${this.state.second}`} readOnly={true}/>
+        <input ref="timepicker" type="text" className={'timepicker-input ' + this.props.className} name={this.props.name} id={this.props.name} value={`${this.state.hour}:${this.state.minute}:${this.state.second}`} readOnly={true}/>
         {this.state.clicked ?
           <div className="timepicker-controls">
             <div className="timepicker-controls-hour">
