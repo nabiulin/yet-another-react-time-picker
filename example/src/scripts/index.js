@@ -1,7 +1,6 @@
 import React from 'react';
-import {render} from 'react-dom';
 
-import TimePicker from 'react-time-picker';
+import TimePicker from 'yet-another-react-time-picker';
 import 'styles/main.scss';
 
 class App extends React.Component {
@@ -14,4 +13,4 @@ class App extends React.Component {
   }
 }
 
-render(<App/>, document.getElementById('app'));
+React.render(<App/>, document.getElementById('app'));
