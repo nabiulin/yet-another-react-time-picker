@@ -18,7 +18,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-function isDescendant(parent, child) {
+var isDescendant = function isDescendant(parent, child) {
   var node = child.parentNode;
   while (node != null) {
     if (node == parent) {
@@ -27,10 +27,14 @@ function isDescendant(parent, child) {
     node = node.parentNode;
   }
   return false;
-}
+};
 
-var toggle = function toggle(e, timePicker, done) {
-  if (!isDescendant(timePicker, e.target)) {
+var handleClick = function handleClick(e, component) {
+  return component.setState({ clicked: !component.state.clicked });
+};
+
+var handleMouseDown = function handleMouseDown(e, component, node, done) {
+  if (!isDescendant(node, e.target)) {
     done();
   }
 };
@@ -86,15 +90,13 @@ var TimePicker = function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      var timePicker = document.querySelector('.timepicker-input');
+      var timePicker = _react2.default.findDOMNode(this.refs.timepicker);
       timePicker.addEventListener('click', function (e) {
-        return toggle(e, timePicker, function () {
-          return _this2.setState({ clicked: !_this2.state.clicked });
-        });
+        return handleClick(e, _this2);
       });
       document.addEventListener('mousedown', function (e) {
-        return toggle(e, timePicker, function () {
-          return _this2.setState({ clicked: !_this2.state.clicked });
+        return handleMouseDown(e, _this2, timePicker.parentNode, function () {
+          return _this2.setState({ clicked: false });
         });
       });
     }
@@ -116,15 +118,13 @@ var TimePicker = function (_React$Component) {
     value: function componentWillUnmount() {
       var _this3 = this;
 
-      var timePicker = document.querySelector('.timepicker-input');
+      var timePicker = _react2.default.findDOMNode(this.refs.timepicker);
       timePicker.removeEventListener('click', function (e) {
-        return toggle(e, timePicker, function () {
-          return _this3.setState({ clicked: !_this3.state.clicked });
-        });
+        return handleClick(e, _this3);
       });
-      document.removeEventListener('click', function (e) {
-        return toggle(e, timePicker, function () {
-          return _this3.setState({ clicked: !_this3.state.clicked });
+      document.removeEventListener('mousedown', function (e) {
+        return handleMouseDown(e, _this3, timePicker.parentNode, function () {
+          return _this3.setState({ clicked: false });
         });
       });
     }
@@ -136,7 +136,7 @@ var TimePicker = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'timepicker' },
-        _react2.default.createElement('input', { type: 'text', className: 'timepicker-input ' + this.props.className, ref: 'timepicker', name: this.props.name, id: this.props.name, value: this.state.hour + ':' + this.state.minute + ':' + this.state.second, readOnly: true }),
+        _react2.default.createElement('input', { ref: 'timepicker', type: 'text', className: 'timepicker-input ' + this.props.className, name: this.props.name, id: this.props.name, value: this.state.hour + ':' + this.state.minute + ':' + this.state.second, readOnly: true }),
         this.state.clicked ? _react2.default.createElement(
           'div',
           { className: 'timepicker-controls' },
