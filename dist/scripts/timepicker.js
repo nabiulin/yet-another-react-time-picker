@@ -89,12 +89,12 @@ var TimePicker = function (_React$Component) {
       var timePicker = document.querySelector('.timepicker-input');
       timePicker.addEventListener('click', function (e) {
         return toggle(e, timePicker, function () {
-          return _this2.setState({ clicked: !component.state.clicked });
+          return _this2.setState({ clicked: !_this2.state.clicked });
         });
       });
       document.addEventListener('mousedown', function (e) {
         return toggle(e, timePicker, function () {
-          return _this2.setState({ clicked: !component.state.clicked });
+          return _this2.setState({ clicked: !_this2.state.clicked });
         });
       });
     }
@@ -118,10 +118,14 @@ var TimePicker = function (_React$Component) {
 
       var timePicker = document.querySelector('.timepicker-input');
       timePicker.removeEventListener('click', function (e) {
-        return toggle(e, _this3);
+        return toggle(e, timePicker, function () {
+          return _this3.setState({ clicked: !_this3.state.clicked });
+        });
       });
       document.removeEventListener('click', function (e) {
-        return toggle(e, _this3);
+        return toggle(e, timePicker, function () {
+          return _this3.setState({ clicked: !_this3.state.clicked });
+        });
       });
     }
   }, {

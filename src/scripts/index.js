@@ -59,8 +59,8 @@ export default class TimePicker extends React.Component {
 
   componentDidMount() {
     let timePicker = document.querySelector('.timepicker-input');
-    timePicker.addEventListener('click', (e) => toggle(e, timePicker, () => this.setState({clicked: !component.state.clicked})));
-    document.addEventListener('mousedown', (e) => toggle(e, timePicker, () => this.setState({clicked: !component.state.clicked})));
+    timePicker.addEventListener('click', (e) => toggle(e, timePicker, () => this.setState({clicked: !this.state.clicked})));
+    document.addEventListener('mousedown', (e) => toggle(e, timePicker, () => this.setState({clicked: !this.state.clicked})));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -80,8 +80,8 @@ export default class TimePicker extends React.Component {
 
   componentWillUnmount() {
     let timePicker = document.querySelector('.timepicker-input');
-    timePicker.removeEventListener('click', (e) => toggle(e, this));
-    document.removeEventListener('click', (e) => toggle(e, this));
+    timePicker.removeEventListener('click', (e) => toggle(e, timePicker, () => this.setState({clicked: !this.state.clicked})));
+    document.removeEventListener('click', (e) => toggle(e, timePicker, () => this.setState({clicked: !this.state.clicked})));
   }
 
   handleHourChange = (e) => {
