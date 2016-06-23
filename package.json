@@ -25,10 +25,8 @@
     "url": "https://github.com/pgrimard/yet-another-react-time-picker/issues"
   },
   "homepage": "https://github.com/pgrimard/yet-another-react-time-picker#readme",
-  "dependencies": {
-    "react": ">=0.13.3"
-  },
   "peerDependencies": {
+    "react": ">=0.13.3",
     "font-awesome": "^4.6.3"
   },
   "devDependencies": {
