@@ -8,11 +8,10 @@
 .timepicker-controls {
   border: 1px solid #ccc;
   position: absolute;
-  -webkit-box-shadow: 0 5px 15px -5px rgba(0, 0, 0, .5);
-  -moz-box-shadow: 0 5px 15px -5px rgba(0, 0, 0, .5);
   box-shadow: 0 5px 15px -5px rgba(0, 0, 0, .5);
-  min-width: 162px;
+  min-width: 166px;
   padding: 10px;
+  background: #fff;
 }
 
 div[class^="timepicker-controls-"] {
