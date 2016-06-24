@@ -49,11 +49,11 @@ function getTime(component) {
       minute = 0,
       second = 0;
 
-  if (component.refs.hasOwnProperty('hours')) hour = _react2.default.findDOMNode(component.refs.hours).value;
+  if (component.refs.hasOwnProperty('hours')) hour = parseInt(_react2.default.findDOMNode(component.refs.hours).value);
 
-  if (component.refs.hasOwnProperty('minutes')) minute = _react2.default.findDOMNode(component.refs.minutes).value;
+  if (component.refs.hasOwnProperty('minutes')) minute = parseInt(_react2.default.findDOMNode(component.refs.minutes).value);
 
-  if (component.refs.hasOwnProperty('seconds')) second = _react2.default.findDOMNode(component.refs.seconds).value;
+  if (component.refs.hasOwnProperty('seconds')) second = parseInt(_react2.default.findDOMNode(component.refs.seconds).value);
 
   return { hour: hour, minute: minute, second: second };
 }
