@@ -33,7 +33,7 @@ function handleClick(e, component) {
   component.setState({ clicked: !component.state.clicked });
 }
 
-function handleMouseDown(e, component, node, done) {
+function handleMouseDown(e, node, done) {
   if (!isDescendant(node, e.target)) {
     done();
   }
@@ -61,26 +61,24 @@ var TimePicker = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TimePicker).call(this, props));
 
     _this.handleIncreaseHour = function () {
-      if (parseInt(_this.state.hour) < 23) {
-        var hour = parseInt(_this.state.hour) + 1;
-        var _this$state = _this.state;
-        var minute = _this$state.minute;
-        var second = _this$state.second;
+      if (parseInt(_this.props.hour) < 23) {
+        var hour = parseInt(_this.props.hour) + 1;
+        var _this$props = _this.props;
+        var minute = _this$props.minute;
+        var second = _this$props.second;
 
         _this.props.onChange(hour, parseInt(minute), parseInt(second));
-        _this.setState({ hour: padLeft(hour) });
       }
     };
 
     _this.handleDecreaseHour = function () {
-      if (parseInt(_this.state.hour) > 0) {
-        var hour = parseInt(_this.state.hour) - 1;
-        var _this$state2 = _this.state;
-        var minute = _this$state2.minute;
-        var second = _this$state2.second;
+      if (parseInt(_this.props.hour) > 0) {
+        var hour = parseInt(_this.props.hour) - 1;
+        var _this$props2 = _this.props;
+        var minute = _this$props2.minute;
+        var second = _this$props2.second;
 
         _this.props.onChange(hour, parseInt(minute), parseInt(second));
-        _this.setState({ hour: padLeft(hour) });
       }
     };
 
@@ -89,31 +87,28 @@ var TimePicker = function (_React$Component) {
 
       if (time.hour >= 0 && time.hour <= 23) {
         _this.props.onChange(time.hour, time.minute, time.second);
-        _this.setState({ hour: padLeft(time.hour) });
       }
     };
 
     _this.handleIncreaseMinute = function () {
-      if (parseInt(_this.state.minute) < 59) {
-        var minute = parseInt(_this.state.minute) + 1;
-        var _this$state3 = _this.state;
-        var hour = _this$state3.hour;
-        var second = _this$state3.second;
+      if (parseInt(_this.props.minute) < 59) {
+        var minute = parseInt(_this.props.minute) + 1;
+        var _this$props3 = _this.props;
+        var hour = _this$props3.hour;
+        var second = _this$props3.second;
 
         _this.props.onChange(parseInt(hour), minute, parseInt(second));
-        _this.setState({ minute: padLeft(minute) });
       }
     };
 
     _this.handleDecreaseMinute = function () {
-      if (parseInt(_this.state.minute) > 0) {
-        var minute = parseInt(_this.state.minute) - 1;
-        var _this$state4 = _this.state;
-        var hour = _this$state4.hour;
-        var second = _this$state4.second;
+      if (parseInt(_this.props.minute) > 0) {
+        var minute = parseInt(_this.props.minute) - 1;
+        var _this$props4 = _this.props;
+        var hour = _this$props4.hour;
+        var second = _this$props4.second;
 
         _this.props.onChange(parseInt(hour), minute, parseInt(second));
-        _this.setState({ minute: padLeft(minute) });
       }
     };
 
@@ -122,31 +117,28 @@ var TimePicker = function (_React$Component) {
 
       if (time.minute >= 0 && time.minute <= 60) {
         _this.props.onChange(time.hour, time.minute, time.second);
-        _this.setState({ minute: padLeft(time.minute) });
       }
     };
 
     _this.handleIncreaseSecond = function () {
-      if (parseInt(_this.state.second) < 59) {
-        var second = parseInt(_this.state.second) + 1;
-        var _this$state5 = _this.state;
-        var minute = _this$state5.minute;
-        var hour = _this$state5.hour;
+      if (parseInt(_this.props.second) < 59) {
+        var second = parseInt(_this.props.second) + 1;
+        var _this$props5 = _this.props;
+        var minute = _this$props5.minute;
+        var hour = _this$props5.hour;
 
         _this.props.onChange(parseInt(hour), parseInt(minute), second);
-        _this.setState({ second: padLeft(second) });
       }
     };
 
     _this.handleDecreaseSecond = function () {
-      if (parseInt(_this.state.second) > 0) {
-        var second = parseInt(_this.state.second) - 1;
-        var _this$state6 = _this.state;
-        var minute = _this$state6.minute;
-        var hour = _this$state6.hour;
+      if (parseInt(_this.props.second) > 0) {
+        var second = parseInt(_this.props.second) - 1;
+        var _this$props6 = _this.props;
+        var minute = _this$props6.minute;
+        var hour = _this$props6.hour;
 
         _this.props.onChange(parseInt(hour), parseInt(minute), second);
-        _this.setState({ second: padLeft(second) });
       }
     };
 
@@ -155,15 +147,11 @@ var TimePicker = function (_React$Component) {
 
       if (time.second >= 0 && time.second <= 60) {
         _this.props.onChange(time.hour, time.minute, time.second);
-        _this.setState({ second: padLeft(time.second) });
       }
     };
 
     _this.state = {
-      clicked: false,
-      hour: padLeft(props.hour),
-      minute: padLeft(props.minute),
-      second: padLeft(props.second)
+      clicked: false
     };
     return _this;
   }
@@ -178,23 +166,10 @@ var TimePicker = function (_React$Component) {
         return handleClick(e, _this2);
       });
       document.addEventListener('mousedown', function (e) {
-        return handleMouseDown(e, _this2, timePicker.parentNode, function () {
+        return handleMouseDown(e, timePicker.parentNode, function () {
           return _this2.setState({ clicked: false });
         });
       });
-    }
-  }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-      var nextState = {};
-
-      if (typeof nextProps.hour !== 'undefined') nextState.hour = padLeft(nextProps.hour);
-
-      if (typeof nextProps.minute !== 'undefined') nextState.minute = padLeft(nextProps.minute);
-
-      if (typeof nextProps.second !== 'undefined') nextState.second = padLeft(nextProps.second);
-
-      this.setState(nextState);
     }
   }, {
     key: 'componentWillUnmount',
@@ -206,7 +181,7 @@ var TimePicker = function (_React$Component) {
         return handleClick(e, _this3);
       });
       document.removeEventListener('mousedown', function (e) {
-        return handleMouseDown(e, _this3, timePicker.parentNode, function () {
+        return handleMouseDown(e, timePicker.parentNode, function () {
           return _this3.setState({ clicked: false });
         });
       });
@@ -217,31 +192,31 @@ var TimePicker = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'timepicker' },
-        _react2.default.createElement('input', { ref: 'timepicker', type: 'text', className: 'timepicker-input ' + this.props.className, name: this.props.name, id: this.props.name, value: this.state.hour + ':' + this.state.minute + ':' + this.state.second, readOnly: true }),
+        _react2.default.createElement('input', { ref: 'timepicker', type: 'text', className: 'timepicker-input ' + this.props.className, name: this.props.name, id: this.props.name, value: padLeft(this.props.hour) + ':' + padLeft(this.props.minute) + ':' + padLeft(this.props.second), readOnly: true }),
         this.state.clicked ? _react2.default.createElement(
           'div',
           { className: 'timepicker-controls' },
-          _react2.default.createElement(
+          this.props.showHour ? _react2.default.createElement(
             'div',
             { className: 'timepicker-controls-hour' },
-            _react2.default.createElement('button', { className: 'fa fa-chevron-up', type: 'button', onClick: this.handleIncreaseHour, disabled: parseInt(this.state.hour) === 23 }),
-            _react2.default.createElement('input', { ref: 'hours', type: 'text', name: this.props.name + '-hour', value: this.state.hour, onChange: this.handleHourChange }),
-            _react2.default.createElement('button', { className: 'fa fa-chevron-down', type: 'button', onClick: this.handleDecreaseHour, disabled: parseInt(this.state.hour) === 0 })
-          ),
-          _react2.default.createElement(
+            _react2.default.createElement('button', { className: 'fa fa-chevron-up', type: 'button', onClick: this.handleIncreaseHour, disabled: parseInt(this.props.hour) === 23 }),
+            _react2.default.createElement('input', { ref: 'hours', type: 'text', name: this.props.name + '-hour', value: padLeft(this.props.hour), onChange: this.handleHourChange }),
+            _react2.default.createElement('button', { className: 'fa fa-chevron-down', type: 'button', onClick: this.handleDecreaseHour, disabled: parseInt(this.props.hour) === 0 })
+          ) : null,
+          this.props.showMinute ? _react2.default.createElement(
             'div',
             { className: 'timepicker-controls-minute' },
-            _react2.default.createElement('button', { className: 'fa fa-chevron-up', type: 'button', onClick: this.handleIncreaseMinute, disabled: parseInt(this.state.minute) === 59 }),
-            _react2.default.createElement('input', { ref: 'minutes', type: 'text', name: this.props.name + '-minute', value: this.state.minute, onChange: this.handleMinuteChange }),
-            _react2.default.createElement('button', { className: 'fa fa-chevron-down', type: 'button', onClick: this.handleDecreaseMinute, disabled: parseInt(this.state.minute) === 0 })
-          ),
-          _react2.default.createElement(
+            _react2.default.createElement('button', { className: 'fa fa-chevron-up', type: 'button', onClick: this.handleIncreaseMinute, disabled: parseInt(this.props.minute) === 59 }),
+            _react2.default.createElement('input', { ref: 'minutes', type: 'text', name: this.props.name + '-minute', value: padLeft(this.props.minute), onChange: this.handleMinuteChange }),
+            _react2.default.createElement('button', { className: 'fa fa-chevron-down', type: 'button', onClick: this.handleDecreaseMinute, disabled: parseInt(this.props.minute) === 0 })
+          ) : null,
+          this.props.showSecond ? _react2.default.createElement(
             'div',
             { className: 'timepicker-controls-second' },
-            _react2.default.createElement('button', { className: 'fa fa-chevron-up', type: 'button', onClick: this.handleIncreaseSecond, disabled: parseInt(this.state.second) === 59 }),
-            _react2.default.createElement('input', { ref: 'seconds', type: 'text', name: this.props.name + '-second', value: this.state.second, onChange: this.handleSecondChange }),
-            _react2.default.createElement('button', { className: 'fa fa-chevron-down', type: 'button', onClick: this.handleDecreaseSecond, disabled: parseInt(this.state.second) === 0 })
-          )
+            _react2.default.createElement('button', { className: 'fa fa-chevron-up', type: 'button', onClick: this.handleIncreaseSecond, disabled: parseInt(this.props.second) === 59 }),
+            _react2.default.createElement('input', { ref: 'seconds', type: 'text', name: this.props.name + '-second', value: padLeft(this.props.second), onChange: this.handleSecondChange }),
+            _react2.default.createElement('button', { className: 'fa fa-chevron-down', type: 'button', onClick: this.handleDecreaseSecond, disabled: parseInt(this.props.second) === 0 })
+          ) : null
         ) : null
       );
     }
@@ -253,21 +228,18 @@ var TimePicker = function (_React$Component) {
 TimePicker.propTypes = {
   className: _react.PropTypes.string,
   name: _react.PropTypes.string.isRequired,
-  hour: _react.PropTypes.number,
+  hour: _react.PropTypes.number.isRequired,
   showHour: _react.PropTypes.bool,
-  minute: _react.PropTypes.number,
+  minute: _react.PropTypes.number.isRequired,
   showMinute: _react.PropTypes.bool,
-  second: _react.PropTypes.number,
+  second: _react.PropTypes.number.isRequired,
   showSecond: _react.PropTypes.bool,
   onChange: _react.PropTypes.func.isRequired
 };
 TimePicker.defaultProps = {
   className: '',
-  hour: 0,
   showHour: true,
-  minute: 0,
   showMinute: true,
-  second: 0,
   showSecond: true
 };
 exports.default = TimePicker;
