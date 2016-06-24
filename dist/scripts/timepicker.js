@@ -121,7 +121,7 @@ var TimePicker = function (_React$Component) {
     _this.handleMinuteChange = function () {
       var time = getTime(_this);
 
-      if (time.minute >= 0 && time.minute <= 60) {
+      if (time.minute >= 0 && time.minute <= 59) {
         _this.props.onChange(time.hour, time.minute, time.second);
       }
     };
@@ -151,7 +151,7 @@ var TimePicker = function (_React$Component) {
     _this.handleSecondChange = function () {
       var time = getTime(_this);
 
-      if (time.second >= 0 && time.second <= 60) {
+      if (time.second >= 0 && time.second <= 59) {
         _this.props.onChange(time.hour, time.minute, time.second);
       }
     };

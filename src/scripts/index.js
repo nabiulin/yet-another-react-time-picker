@@ -126,7 +126,7 @@ export default class TimePicker extends React.Component {
   handleMinuteChange = () => {
     const time = getTime(this);
 
-    if(time.minute >= 0 && time.minute <= 60) {
+    if(time.minute >= 0 && time.minute <= 59) {
       this.props.onChange(time.hour, time.minute, time.second);
     }
   };
@@ -150,7 +150,7 @@ export default class TimePicker extends React.Component {
   handleSecondChange = () => {
     const time = getTime(this);
 
-    if(time.second >= 0 && time.second <= 60) {
+    if(time.second >= 0 && time.second <= 59) {
       this.props.onChange(time.hour, time.minute, time.second);
     }
   };
