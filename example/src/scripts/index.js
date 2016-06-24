@@ -17,14 +17,16 @@ class App extends React.Component {
     this.setState({hours: h, minutes: m, seconds: s});
   };
 
-  shouldComponentUpdate() {
-    return false;
-  }
-
   render() {
     return (
       <div>
-        <TimePicker name="myTimePicker" onChange={this.handleTimeChange}/>
+        <TimePicker
+          hour={this.state.hours}
+          minute={this.state.minutes}
+          second={this.state.seconds}
+          name="myTimePicker"
+          onChange={this.handleTimeChange}
+        />
       </div>
     );
   }
