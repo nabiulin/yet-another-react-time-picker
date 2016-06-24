@@ -30,9 +30,16 @@ function padLeft(number) {
 }
 
 function getTime(component) {
-  const hour = parseInt(React.findDOMNode(component.refs.hours).value);
-  const minute = parseInt(React.findDOMNode(component.refs.minutes).value);
-  const second = parseInt(React.findDOMNode(component.refs.seconds).value);
+  let hour = 0, minute = 0, second = 0;
+
+  if(component.refs.hasOwnProperty('hours'))
+    hour = React.findDOMNode(component.refs.hours).value;
+
+  if(component.refs.hasOwnProperty('minutes'))
+    minute = React.findDOMNode(component.refs.minutes).value;
+
+  if(component.refs.hasOwnProperty('seconds'))
+    second = React.findDOMNode(component.refs.seconds).value;
 
   return {hour, minute, second};
 }
