@@ -2,6 +2,7 @@ import path from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import LiveReloadPlugin from 'webpack-livereload-plugin';
+import webpack from 'webpack';
 
 export default {
   entry: {
@@ -37,6 +38,16 @@ export default {
         collapseWhitespace: true
       }
     }),
-    new LiveReloadPlugin()
+    new LiveReloadPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: true
+      }
+    })
   ]
 }

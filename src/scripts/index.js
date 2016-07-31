@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import {findDOMNode} from 'react-dom';
 
 function isDescendant(parent, child) {
   let node = child.parentNode;
@@ -33,13 +34,13 @@ function getTime(component) {
   let hour = 0, minute = 0, second = 0;
 
   if(component.refs.hasOwnProperty('hours'))
-    hour = parseInt(React.findDOMNode(component.refs.hours).value);
+    hour = parseInt(findDOMNode(component.refs.hours).value);
 
   if(component.refs.hasOwnProperty('minutes'))
-    minute = parseInt(React.findDOMNode(component.refs.minutes).value);
+    minute = parseInt(findDOMNode(component.refs.minutes).value);
 
   if(component.refs.hasOwnProperty('seconds'))
-    second = parseInt(React.findDOMNode(component.refs.seconds).value);
+    second = parseInt(findDOMNode(component.refs.seconds).value);
 
   return {hour, minute, second};
 }
@@ -72,13 +73,13 @@ export default class TimePicker extends React.Component {
   };
 
   componentDidMount() {
-    let timePicker = React.findDOMNode(this.refs.timepicker);
+    let timePicker = findDOMNode(this.refs.timepicker);
     timePicker.addEventListener('click', (e) => handleClick(e, this));
     document.addEventListener('mousedown', (e) => handleMouseDown(e, timePicker.parentNode, () => this.setState({clicked: false})));
   }
 
   componentWillUnmount() {
-    let timePicker = React.findDOMNode(this.refs.timepicker);
+    let timePicker = findDOMNode(this.refs.timepicker);
     timePicker.removeEventListener('click', (e) => handleClick(e, this));
     document.removeEventListener('mousedown', (e) => handleMouseDown(e, timePicker.parentNode, () => this.setState({clicked: false})));
   }

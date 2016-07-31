@@ -10,6 +10,8 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactDom = require('react-dom');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -49,11 +51,11 @@ function getTime(component) {
       minute = 0,
       second = 0;
 
-  if (component.refs.hasOwnProperty('hours')) hour = parseInt(_react2.default.findDOMNode(component.refs.hours).value);
+  if (component.refs.hasOwnProperty('hours')) hour = parseInt((0, _reactDom.findDOMNode)(component.refs.hours).value);
 
-  if (component.refs.hasOwnProperty('minutes')) minute = parseInt(_react2.default.findDOMNode(component.refs.minutes).value);
+  if (component.refs.hasOwnProperty('minutes')) minute = parseInt((0, _reactDom.findDOMNode)(component.refs.minutes).value);
 
-  if (component.refs.hasOwnProperty('seconds')) second = parseInt(_react2.default.findDOMNode(component.refs.seconds).value);
+  if (component.refs.hasOwnProperty('seconds')) second = parseInt((0, _reactDom.findDOMNode)(component.refs.seconds).value);
 
   return { hour: hour, minute: minute, second: second };
 }
@@ -167,7 +169,7 @@ var TimePicker = function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      var timePicker = _react2.default.findDOMNode(this.refs.timepicker);
+      var timePicker = (0, _reactDom.findDOMNode)(this.refs.timepicker);
       timePicker.addEventListener('click', function (e) {
         return handleClick(e, _this2);
       });
@@ -182,7 +184,7 @@ var TimePicker = function (_React$Component) {
     value: function componentWillUnmount() {
       var _this3 = this;
 
-      var timePicker = _react2.default.findDOMNode(this.refs.timepicker);
+      var timePicker = (0, _reactDom.findDOMNode)(this.refs.timepicker);
       timePicker.removeEventListener('click', function (e) {
         return handleClick(e, _this3);
       });
