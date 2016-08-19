@@ -11,10 +11,6 @@ npm install --save yet-another-react-time-picker
 At a minimum a `TimePicker` needs an `hour`, `minute`, `second` and `onChange` property.
 
 ```javascript
-import React from 'react';
-import {render} from 'react-dom';
-import TimePicker from 'yet-another-react-time-picker';
-
 export default function MyComponent({hour, minute, second, handleChange}) {
   return (
     <TimePicker
@@ -24,20 +20,6 @@ export default function MyComponent({hour, minute, second, handleChange}) {
       second={second}
       onChange={(h, m, s) => handleChange(h, m, s)}
     />
-  );
-}
-```
-
-If you're wrapping `TimePicker` in a higher order component, you might do something like this.
-
-```javascript
-export default function MyComponent(props) {
-  const {title, ...timePickerProps} = props;
-  return (
-    <div>
-      <h1>{title}</h1>
-      <TimePicker {...timePickerProps}/>
-    </div>
   );
 }
 ```
@@ -70,21 +52,6 @@ export default function MyComponent(props) {
 ```
 
 ## Props
-
-const propTypes = {
-  className: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  hour: PropTypes.number.isRequired,
-  showHour: PropTypes.bool,
-  maxHour: PropTypes.number,
-  minute: PropTypes.number.isRequired,
-  showMinute: PropTypes.bool,
-  maxMinute: PropTypes.number,
-  second: PropTypes.number.isRequired,
-  showSecond: PropTypes.bool,
-  maxSecond: PropTypes.number,
-  onChange: PropTypes.func.isRequired
-};
 
 1. `className` - Optional classes to pass to the underlying `input` field.
 2. `name` - Required property that will be used for the underlying `input` fields.  The main `input` field will inherit this name, while the individual time fields will be prepended, ie: `mytime-hour`.
