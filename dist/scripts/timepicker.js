@@ -58,6 +58,31 @@ function getTime(component) {
   return { hour: hour, minute: minute, second: second };
 }
 
+var propTypes = {
+  className: _react.PropTypes.string,
+  name: _react.PropTypes.string.isRequired,
+  hour: _react.PropTypes.number.isRequired,
+  showHour: _react.PropTypes.bool,
+  maxHour: _react.PropTypes.number,
+  minute: _react.PropTypes.number.isRequired,
+  showMinute: _react.PropTypes.bool,
+  maxMinute: _react.PropTypes.number,
+  second: _react.PropTypes.number.isRequired,
+  showSecond: _react.PropTypes.bool,
+  maxSecond: _react.PropTypes.number,
+  onChange: _react.PropTypes.func.isRequired
+};
+
+var defaultProps = {
+  className: '',
+  showHour: true,
+  maxHour: 23,
+  showMinute: true,
+  maxMinute: 59,
+  showSecond: true,
+  maxSecond: 59
+};
+
 var TimePicker = function (_React$Component) {
   _inherits(TimePicker, _React$Component);
 
@@ -67,92 +92,134 @@ var TimePicker = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TimePicker).call(this, props));
 
     _this.handleIncreaseHour = function () {
-      if (parseInt(_this.props.hour) < 23) {
-        var hour = parseInt(_this.props.hour) + 1;
-        var _this$props = _this.props;
-        var minute = _this$props.minute;
-        var second = _this$props.second;
+      var _this$props = _this.props;
+      var hour = _this$props.hour;
+      var maxHour = _this$props.maxHour;
+      var minute = _this$props.minute;
+      var second = _this$props.second;
+      var onChange = _this$props.onChange;
 
-        _this.props.onChange(hour, parseInt(minute), parseInt(second));
+
+      if (parseInt(hour) < 23 && hour < maxHour) {
+        onChange(parseInt(hour) + 1, parseInt(minute), parseInt(second));
       }
     };
 
     _this.handleDecreaseHour = function () {
-      if (parseInt(_this.props.hour) > 0) {
-        var hour = parseInt(_this.props.hour) - 1;
-        var _this$props2 = _this.props;
-        var minute = _this$props2.minute;
-        var second = _this$props2.second;
+      var _this$props2 = _this.props;
+      var hour = _this$props2.hour;
+      var minute = _this$props2.minute;
+      var second = _this$props2.second;
+      var onChange = _this$props2.onChange;
 
-        _this.props.onChange(hour, parseInt(minute), parseInt(second));
+
+      if (parseInt(hour) > 0) {
+        onChange(parseInt(hour) - 1, parseInt(minute), parseInt(second));
       }
     };
 
     _this.handleHourChange = function () {
-      var time = getTime(_this);
+      var _this$props3 = _this.props;
+      var maxHour = _this$props3.maxHour;
+      var onChange = _this$props3.onChange;
 
-      if (time.hour >= 0 && time.hour <= 23) {
-        _this.props.onChange(time.hour, time.minute, time.second);
+      var _getTime = getTime(_this);
+
+      var hour = _getTime.hour;
+      var minute = _getTime.minute;
+      var second = _getTime.second;
+
+
+      if (hour >= 0 && hour <= 23 && hour <= maxHour) {
+        onChange(hour, minute, second);
       }
     };
 
     _this.handleIncreaseMinute = function () {
-      if (parseInt(_this.props.minute) < 59) {
-        var minute = parseInt(_this.props.minute) + 1;
-        var _this$props3 = _this.props;
-        var hour = _this$props3.hour;
-        var second = _this$props3.second;
+      var _this$props4 = _this.props;
+      var hour = _this$props4.hour;
+      var minute = _this$props4.minute;
+      var maxMinute = _this$props4.maxMinute;
+      var second = _this$props4.second;
+      var onChange = _this$props4.onChange;
 
-        _this.props.onChange(parseInt(hour), minute, parseInt(second));
+
+      if (parseInt(minute) < 59 && minute < maxMinute) {
+        onChange(parseInt(hour), parseInt(minute) + 1, parseInt(second));
       }
     };
 
     _this.handleDecreaseMinute = function () {
-      if (parseInt(_this.props.minute) > 0) {
-        var minute = parseInt(_this.props.minute) - 1;
-        var _this$props4 = _this.props;
-        var hour = _this$props4.hour;
-        var second = _this$props4.second;
+      var _this$props5 = _this.props;
+      var minute = _this$props5.minute;
+      var hour = _this$props5.hour;
+      var second = _this$props5.second;
+      var onChange = _this$props5.onChange;
 
-        _this.props.onChange(parseInt(hour), minute, parseInt(second));
+
+      if (parseInt(minute) > 0) {
+        onChange(parseInt(hour), parseInt(minute) - 1, parseInt(second));
       }
     };
 
     _this.handleMinuteChange = function () {
-      var time = getTime(_this);
+      var _this$props6 = _this.props;
+      var maxMinute = _this$props6.maxMinute;
+      var onChange = _this$props6.onChange;
 
-      if (time.minute >= 0 && time.minute <= 59) {
-        _this.props.onChange(time.hour, time.minute, time.second);
+      var _getTime2 = getTime(_this);
+
+      var hour = _getTime2.hour;
+      var minute = _getTime2.minute;
+      var second = _getTime2.second;
+
+
+      if (minute >= 0 && minute <= 59 && minute <= maxMinute) {
+        onChange(hour, minute, second);
       }
     };
 
     _this.handleIncreaseSecond = function () {
-      if (parseInt(_this.props.second) < 59) {
-        var second = parseInt(_this.props.second) + 1;
-        var _this$props5 = _this.props;
-        var minute = _this$props5.minute;
-        var hour = _this$props5.hour;
+      var _this$props7 = _this.props;
+      var hour = _this$props7.hour;
+      var minute = _this$props7.minute;
+      var second = _this$props7.second;
+      var maxSecond = _this$props7.maxSecond;
+      var onChange = _this$props7.onChange;
 
-        _this.props.onChange(parseInt(hour), parseInt(minute), second);
+
+      if (parseInt(second) < 59 && second < maxSecond) {
+        onChange(parseInt(hour), parseInt(minute), parseInt(second) + 1);
       }
     };
 
     _this.handleDecreaseSecond = function () {
-      if (parseInt(_this.props.second) > 0) {
-        var second = parseInt(_this.props.second) - 1;
-        var _this$props6 = _this.props;
-        var minute = _this$props6.minute;
-        var hour = _this$props6.hour;
+      var _this$props8 = _this.props;
+      var hour = _this$props8.hour;
+      var minute = _this$props8.minute;
+      var second = _this$props8.second;
+      var onChange = _this$props8.onChange;
 
-        _this.props.onChange(parseInt(hour), parseInt(minute), second);
+
+      if (parseInt(second) > 0) {
+        onChange(parseInt(hour), parseInt(minute), parseInt(second) - 1);
       }
     };
 
     _this.handleSecondChange = function () {
-      var time = getTime(_this);
+      var _this$props9 = _this.props;
+      var maxSecond = _this$props9.maxSecond;
+      var onChange = _this$props9.onChange;
 
-      if (time.second >= 0 && time.second <= 59) {
-        _this.props.onChange(time.hour, time.minute, time.second);
+      var _getTime3 = getTime(_this);
+
+      var hour = _getTime3.hour;
+      var minute = _getTime3.minute;
+      var second = _getTime3.second;
+
+
+      if (second >= 0 && second <= 59 && second <= maxSecond) {
+        onChange(hour, minute, second);
       }
     };
 
@@ -231,21 +298,8 @@ var TimePicker = function (_React$Component) {
   return TimePicker;
 }(_react2.default.Component);
 
-TimePicker.propTypes = {
-  className: _react.PropTypes.string,
-  name: _react.PropTypes.string.isRequired,
-  hour: _react.PropTypes.number.isRequired,
-  showHour: _react.PropTypes.bool,
-  minute: _react.PropTypes.number.isRequired,
-  showMinute: _react.PropTypes.bool,
-  second: _react.PropTypes.number.isRequired,
-  showSecond: _react.PropTypes.bool,
-  onChange: _react.PropTypes.func.isRequired
-};
-TimePicker.defaultProps = {
-  className: '',
-  showHour: true,
-  showMinute: true,
-  showSecond: true
-};
 exports.default = TimePicker;
+
+
+TimePicker.defaultProps = defaultProps;
+TimePicker.propTypes = propTypes;

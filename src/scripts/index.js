@@ -44,6 +44,31 @@ function getTime(component) {
   return {hour, minute, second};
 }
 
+const propTypes = {
+  className: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  hour: PropTypes.number.isRequired,
+  showHour: PropTypes.bool,
+  maxHour: PropTypes.number,
+  minute: PropTypes.number.isRequired,
+  showMinute: PropTypes.bool,
+  maxMinute: PropTypes.number,
+  second: PropTypes.number.isRequired,
+  showSecond: PropTypes.bool,
+  maxSecond: PropTypes.number,
+  onChange: PropTypes.func.isRequired
+};
+
+const defaultProps = {
+  className: '',
+  showHour: true,
+  maxHour: 23,
+  showMinute: true,
+  maxMinute: 59,
+  showSecond: true,
+  maxSecond: 59
+};
+
 export default class TimePicker extends React.Component {
   constructor(props) {
     super(props);
@@ -51,25 +76,6 @@ export default class TimePicker extends React.Component {
       clicked: false
     };
   }
-
-  static propTypes = {
-    className: PropTypes.string,
-    name: PropTypes.string.isRequired,
-    hour: PropTypes.number.isRequired,
-    showHour: PropTypes.bool,
-    minute: PropTypes.number.isRequired,
-    showMinute: PropTypes.bool,
-    second: PropTypes.number.isRequired,
-    showSecond: PropTypes.bool,
-    onChange: PropTypes.func.isRequired
-  };
-
-  static defaultProps = {
-    className: '',
-    showHour: true,
-    showMinute: true,
-    showSecond: true
-  };
 
   componentDidMount() {
     let timePicker = React.findDOMNode(this.refs.timepicker);
@@ -84,74 +90,77 @@ export default class TimePicker extends React.Component {
   }
 
   handleIncreaseHour = () => {
-    if(parseInt(this.props.hour) < 23) {
-      const hour = parseInt(this.props.hour) + 1;
-      const {minute, second} = this.props;
-      this.props.onChange(hour, parseInt(minute), parseInt(second));
+    const {hour, maxHour, minute, second, onChange} = this.props;
+
+    if(parseInt(hour) < 23 && hour < maxHour) {
+      onChange(parseInt(hour) + 1, parseInt(minute), parseInt(second));
     }
   };
 
   handleDecreaseHour = () => {
-    if(parseInt(this.props.hour) > 0) {
-      const hour = parseInt(this.props.hour) - 1;
-      const {minute, second} = this.props;
-      this.props.onChange(hour, parseInt(minute), parseInt(second));
+    const {hour, minute, second, onChange} = this.props;
+
+    if(parseInt(hour) > 0) {
+      onChange(parseInt(hour) - 1, parseInt(minute), parseInt(second));
     }
   };
 
   handleHourChange = () => {
-    const time = getTime(this);
+    const {maxHour, onChange} = this.props;
+    const {hour, minute, second} = getTime(this);
 
-    if(time.hour >= 0 && time.hour <= 23) {
-      this.props.onChange(time.hour, time.minute, time.second);
+    if(hour >= 0 && hour <= 23 && hour <= maxHour) {
+      onChange(hour, minute, second);
     }
   };
 
   handleIncreaseMinute = () => {
-    if(parseInt(this.props.minute) < 59) {
-      const minute = parseInt(this.props.minute) + 1;
-      const {hour, second} = this.props;
-      this.props.onChange(parseInt(hour), minute, parseInt(second));
+    const {hour, minute, maxMinute, second, onChange} = this.props;
+
+    if(parseInt(minute) < 59 && minute < maxMinute) {
+      onChange(parseInt(hour), parseInt(minute) + 1, parseInt(second));
     }
   };
 
   handleDecreaseMinute = () => {
-    if(parseInt(this.props.minute) > 0) {
-      const minute = parseInt(this.props.minute) - 1;
-      const {hour, second} = this.props;
-      this.props.onChange(parseInt(hour), minute, parseInt(second));
+    const {minute, hour, second, onChange} = this.props;
+
+    if(parseInt(minute) > 0) {
+      onChange(parseInt(hour), parseInt(minute) - 1, parseInt(second));
     }
   };
 
   handleMinuteChange = () => {
-    const time = getTime(this);
+    const {maxMinute, onChange} = this.props;
+    const {hour, minute, second} = getTime(this);
 
-    if(time.minute >= 0 && time.minute <= 59) {
-      this.props.onChange(time.hour, time.minute, time.second);
+    if(minute >= 0 && minute <= 59 && minute <= maxMinute) {
+      onChange(hour, minute, second);
     }
   };
 
   handleIncreaseSecond = () => {
-    if(parseInt(this.props.second) < 59) {
-      const second = parseInt(this.props.second) + 1;
-      const {minute, hour} = this.props;
-      this.props.onChange(parseInt(hour), parseInt(minute), second);
+    const {hour, minute, second, maxSecond, onChange} = this.props;
+
+    if(parseInt(second) < 59 && second < maxSecond) {
+      onChange(parseInt(hour), parseInt(minute), parseInt(second) + 1);
     }
   };
 
   handleDecreaseSecond = () => {
-    if(parseInt(this.props.second) > 0) {
-      const second = parseInt(this.props.second) - 1;
-      const {minute, hour} = this.props;
-      this.props.onChange(parseInt(hour), parseInt(minute), second);
+    const {hour, minute, second, onChange} = this.props;
+
+    if(parseInt(second) > 0) {
+      onChange(parseInt(hour), parseInt(minute), parseInt(second) - 1);
     }
   };
 
   handleSecondChange = () => {
-    const time = getTime(this);
+    const {maxSecond, onChange} = this.props;
+    const {hour, minute, second} = getTime(this);
 
-    if(time.second >= 0 && time.second <= 59) {
-      this.props.onChange(time.hour, time.minute, time.second);
+    if(second >= 0 && second <= 59 && second <= maxSecond) {
+      onChange(hour, minute, second);
     }
   };
 
@@ -188,3 +197,6 @@ export default class TimePicker extends React.Component {
     );
   }
 }
+
+TimePicker.defaultProps = defaultProps;
+TimePicker.propTypes = propTypes;
