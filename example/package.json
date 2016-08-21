@@ -17,6 +17,7 @@
   "author": "Patrick Grimard <pgrimard@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "font-awesome": "^4.6.3",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "yet-another-react-time-picker": "file:///Users/Patrick/IdeaProjects/yet-another-react-time-picker"
